@@ -21,7 +21,7 @@ git clone https://github.com/TadashiJei/Cloudflare-DDNS.git
 
 2. **Configure:**
 
-* Edit the script `cloudflare-ddns-updater.sh` with your Cloudflare API credentials and domain name.
+* Edit the script `cloudflare-v1 or v2.sh` with your Cloudflare API credentials and domain name.
 * Set the update frequency in crontab:
 
 3. **Run the script manually:**
