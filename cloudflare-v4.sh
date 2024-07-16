@@ -142,6 +142,14 @@ static_ip_list=( "Example ip 1" "Example IP 2" )
 ################################################
 
 for ip in "${static_ip_list[@]}"; do
+  if [[ ! " ${static_ip_list[@]} " =~ " $old_ip " ]]; then
+    # IP mismatch detected, update the record with the current IP
+    update=$(curl -s -X PATCH "https://api.cloudflare.com/client/v4/zones/$zone_identifier/dns_records/$record_identifier" \
+      -H "X-Auth-Email: $auth_email" \
+      -H "$auth_header $auth_key" \
+      -H "Content-Type: application/json" \
+      --data "{\"content\":\"$ip\",\"ttl\":$ttl,\"proxied\":$proxy}")
+  fi
 done
 
 ################################################
